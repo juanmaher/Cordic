@@ -9,7 +9,7 @@ architecture tb_cordic_arq of tb_cordic is
 
 	component cordic is
 		generic(
-			BITS: natural := 7;
+			BITS: natural := 18;
 			ETAPAS: natural := 2
 		);
 		port(
@@ -18,25 +18,25 @@ architecture tb_cordic_arq of tb_cordic is
 			--start : in std_logic;
 			modo : in std_logic;
 			-- Entrada
-			xi : in std_logic_vector(BITS-1 downto 0);
-			yi : in std_logic_vector(BITS-1 downto 0);
-			zi : in std_logic_vector(BITS-1 downto 0);
+			xi_c : in std_logic_vector(BITS-1 downto 0);
+			yi_c : in std_logic_vector(BITS-1 downto 0);
+			zi_c : in std_logic_vector(BITS-1 downto 0);
 			-- Salida
-			xo : out std_logic_vector(BITS-1 downto 0);
-			yo : out std_logic_vector(BITS-1 downto 0);
-			zo : out std_logic_vector(BITS-1 downto 0)
+			xo_c : out std_logic_vector(BITS-1 downto 0);
+			yo_c : out std_logic_vector(BITS-1 downto 0);
+			zo_c : out std_logic_vector(BITS-1 downto 0)
 		);
 	end component;
 	
-	constant TB_BITS : natural := 7;
+	constant TB_BITS : natural := 18;
 	constant TB_ETAPAS : natural := 2;
 	
 	signal tb_clk: std_logic := '0';	
 	signal tb_rst: std_logic := '0';	
 	
-	signal tb_xi: std_logic_vector(TB_BITS-1 downto 0) := "1010101";
-	signal tb_yi: std_logic_vector(TB_BITS-1 downto 0) := "1010101";
-	signal tb_zi: std_logic_vector(TB_BITS-1 downto 0) := "1010101";
+	signal tb_xi: std_logic_vector(TB_BITS-1 downto 0) := "101010101101010101";
+	signal tb_yi: std_logic_vector(TB_BITS-1 downto 0) := "101010101101010101";
+	signal tb_zi: std_logic_vector(TB_BITS-1 downto 0) := "101010101101010101";
 																				
 	signal tb_xo: std_logic_vector(TB_BITS-1 downto 0);
 	signal tb_yo: std_logic_vector(TB_BITS-1 downto 0);
@@ -59,12 +59,12 @@ begin
 			clk => tb_clk,
 			rst => tb_rst,
 			modo => tb_modo,
-			xi 	=> tb_xi,
-			yi 	=> tb_yi,
-			zi 	=> tb_zi,
-			xo 	=> tb_xo,
-			yo 	=> tb_yo,
-			zo 	=> tb_zo
+			xi_c 	=> tb_xi,
+			yi_c 	=> tb_yi,
+			zi_c 	=> tb_zi,
+			xo_c 	=> tb_xo,
+			yo_c 	=> tb_yo,
+			zo_c 	=> tb_zo
 		);
 	
 end tb_cordic_arq;
